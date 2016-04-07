@@ -25,7 +25,7 @@ public class FoursquareHandler2 {
 	private static final String SEARCH_LIMIT = "limit=" + SEARCH_LIMIT_INTEGER.toString();
 	private static final String OFFSET = "offset=";
 	private static final String LOCATION = "ll=";
-	private static final String QUERY_RESTAURANT = "query=restaurant";
+	private static final String QUERY_RESTAURANT = "categoryId=4d4b7105d754a06374d81259";
 
 
 

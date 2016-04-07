@@ -20,7 +20,7 @@ public class RestaurantTest {
 	public static void main(String[] args) {
 		Restaurant r = new Restaurant(rID);
 		testGetSortedMenu(r);
-		testGetReviewsByDishName(r);
+		//testGetReviewsByDishName(r);
 	}
 
 }
