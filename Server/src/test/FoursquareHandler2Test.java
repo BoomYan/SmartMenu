@@ -1,7 +1,6 @@
 package test;
 
 import smartMenu.FoursquareHandler2;
-
 public class FoursquareHandler2Test {
 
 	private static String rID = "40a55d80f964a52020f31ee3";
