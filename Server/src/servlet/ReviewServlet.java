@@ -23,7 +23,7 @@ public class ReviewServlet extends HttpServlet {
 		if (dishName == null) {
 			return;
 		}
-		Restaurant restaurant = (Restaurant)req.getAttribute("restaurant");
+		Restaurant restaurant = (Restaurant)req.getSession().getAttribute("restaurant");
 		if (restaurant == null) {
 			//TODO send back info to tell user step back
 			return;
