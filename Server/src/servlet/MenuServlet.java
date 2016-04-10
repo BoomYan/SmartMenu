@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import smartMenu.Restaurant;
+import utils.ServletUtils;
 
 public class MenuServlet extends HttpServlet {
 	
@@ -19,19 +20,21 @@ public class MenuServlet extends HttpServlet {
 			throws IOException, ServletException {
 		
 		String id = (String) req.getParameter("rID");
-		System.out.println(id);
-		if (id == null) {
+		if (id == null || id == "") {
+			res.setStatus(ServletUtils.BAD_REQUEST);
 			return;
 		}
 		Restaurant restaurant = (Restaurant)this.getServletConfig().getServletContext().getAttribute(id);
 		if (restaurant == null) {
-			restaurant = new Restaurant(id);
+			restaurant = Restaurant.constructRestaurant(id);
+			if (restaurant == null) {
+				res.setStatus(ServletUtils.BAD_REQUEST);
+				return;
+			}
 			this.getServletConfig().getServletContext().setAttribute(id, restaurant);
 		}
 		req.getSession().setAttribute("restaurant", restaurant);
-		res.setContentType("application/json");
-		res.getWriter().write(restaurant.getSortedMenu().toString());
+		ServletUtils.setHttpResponse(restaurant.getSortedMenu(), res);
 	}
 
 }
-

@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -20,6 +21,18 @@ public class Restaurant {
 	private final JSONArray reviews;
 	private final Map<String, JSONArray> dishToReviews;
 	
+	public static Restaurant constructRestaurant(String id) {
+		Restaurant restaurant;
+		try {
+			restaurant = new Restaurant(id);
+			sortMenu(restaurant.menu);
+		}
+		catch (Exception e) {
+			return null;
+		}
+		return restaurant;
+	}
+	
 	@SuppressWarnings("unchecked")
 	private static Map<String, JSONArray> getDishToReviews(JSONArray menu, JSONArray reviews) {
 		Map<String, JSONArray> result = new HashMap<>();
@@ -29,7 +42,7 @@ public class Restaurant {
 			JSONArray dishReviews = new JSONArray();
 			for (int j = 0; j < reviews.size(); j++) {
 				String reviewText = (String)Utils.getJSONObject(reviews, j).get("text");
-				if (reviewText.contains(dishName)) {
+				if (StringUtils.containsIgnoreCase(reviewText, dishName)){
 					JSONObject reviewObj = new JSONObject();
 					reviewObj.put("text", reviewText);
 					dishReviews.add(reviewObj);
@@ -55,12 +68,11 @@ public class Restaurant {
 	}
 	
 
-	public Restaurant(String id) {
+	private Restaurant(String id) {
 		this.id = id;
 		menu = FoursquareHandler2.getMenuByRestaurantID(id);
 		reviews = FoursquareHandler2.getReviewsByRestaurantID(id);
 		dishToReviews = getDishToReviews(menu, reviews);
-		sortMenu(menu);
 	}
 
 	public JSONArray getReviewsByDishName(String dishName) {
@@ -71,12 +83,12 @@ public class Restaurant {
 		return menu;
 	}
 	
-	public String getId() {
-		return id;
-	}
-	
 	private Map<String, JSONArray> getDishToReviews() {
 		return dishToReviews;
+	}
+
+	public String getId() {
+		return id;
 	}
 
 }

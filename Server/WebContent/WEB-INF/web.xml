@@ -29,4 +29,12 @@
 		<servlet-name>ReviewServlet</servlet-name>
 		<url-pattern>/getReview</url-pattern>
 	</servlet-mapping>
+		<servlet>
+		<servlet-name>RestaurantServlet</servlet-name>
+		<servlet-class>servlet.RestaurantServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RestaurantServlet</servlet-name>
+		<url-pattern>/getRestaurant</url-pattern>
+	</servlet-mapping>
 </web-app>

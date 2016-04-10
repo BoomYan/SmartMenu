@@ -9,12 +9,12 @@ public class RestaurantTest {
 		System.out.println(r.getSortedMenu());
 	}
 	
-	private static void testGetReviewsByDishName(Restaurant r) {
+	public static void testGetReviewsByDishName(Restaurant r) {
 		System.out.println(r.getReviewsByDishName("Pancakes"));
 	}
 	
 	public static void main(String[] args) {
-		Restaurant r = new Restaurant(rID);
+		Restaurant r = Restaurant.constructRestaurant(rID);
 		testGetSortedMenu(r);
 		//testGetReviewsByDishName(r);
 	}

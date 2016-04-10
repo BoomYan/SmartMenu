@@ -33,7 +33,11 @@ public class Utils {
 	}
 	
 	// take get http url and return response object as JSONObject
-	public static JSONObject sendGetRequest(String url) throws ParseException {
+	public static JSONObject sendGetRequest(String url) throws ParseException, IllegalArgumentException{
+		HttpRequest res = HttpRequest.get(url);
+		if (res.badRequest()) {
+			throw new IllegalArgumentException("Invalid URL");
+		}
 		String response = HttpRequest.get(url).body();
 		return (JSONObject) JSON_PARSER.parse(response);
 	}
