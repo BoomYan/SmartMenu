@@ -26,3 +26,6 @@ build/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+.Menu.xcodeproj
+MenuTests/
