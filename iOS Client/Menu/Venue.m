@@ -11,9 +11,9 @@
 
 @implementation Venue
 
--(NSDictionary *)replacedKeyFromPropertyName
-{
-    return @{@"venue_id" : @"id"};
-}
+//-(NSDictionary *)replacedKeyFromPropertyName
+//{
+//    return @{@"venue_id" : @"id"};
+//}
 
 @end

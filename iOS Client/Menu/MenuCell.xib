@@ -36,15 +36,31 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YJx-gY-fXb">
-                        <rect key="frame" x="299" y="8" width="70" height="45.5"/>
+                        <rect key="frame" x="299" y="8" width="50" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="2U3-db-9rF"/>
-                            <constraint firstAttribute="height" constant="45.5" id="Zpa-N9-XWQ"/>
+                            <constraint firstAttribute="width" constant="50" id="2U3-db-9rF"/>
+                            <constraint firstAttribute="height" constant="30" id="Zpa-N9-XWQ"/>
                         </constraints>
                         <state key="normal" title="5" image="icon_collect"/>
+                        <state key="selected" backgroundImage="icon_collect_highlighted"/>
+                        <connections>
+                            <action selector="collect:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="SmQ-hi-Aqv"/>
+                        </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjI-Tr-DuY">
+                        <rect key="frame" x="318" y="38" width="60" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="KOQ-Br-yXS"/>
+                            <constraint firstAttribute="width" constant="60" id="Rt7-7r-pAM"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="sjI-Tr-DuY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="310" id="3hf-Eg-7eL"/>
+                    <constraint firstItem="sjI-Tr-DuY" firstAttribute="top" secondItem="YJx-gY-fXb" secondAttribute="bottom" id="7AY-Qp-6UQ"/>
                     <constraint firstItem="Zjc-Wr-p3v" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="7fU-To-s1z"/>
                     <constraint firstItem="HNd-je-e49" firstAttribute="top" secondItem="Zjc-Wr-p3v" secondAttribute="bottom" constant="10" id="JsP-8u-FTS"/>
                     <constraint firstItem="YJx-gY-fXb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Z4P-SP-Xxa"/>
@@ -56,12 +72,14 @@
             <connections>
                 <outlet property="menuNameLabel" destination="Zjc-Wr-p3v" id="u1i-bn-dEL"/>
                 <outlet property="menuPriceLabel" destination="HNd-je-e49" id="5q0-ES-ak8"/>
-                <outlet property="recommendButton" destination="YJx-gY-fXb" id="FfW-ok-jha"/>
+                <outlet property="recomendLabel" destination="sjI-Tr-DuY" id="5ek-PK-aR7"/>
+                <outlet property="recommendButton" destination="YJx-gY-fXb" id="zd3-af-rqK"/>
             </connections>
             <point key="canvasLocation" x="277" y="208.5"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="icon_collect" width="86" height="87"/>
+        <image name="icon_collect_highlighted" width="86" height="87"/>
     </resources>
 </document>

@@ -13,10 +13,11 @@
 
 @interface Venue : NSObject
 
-@property(nonatomic, copy) NSString *venue_id;
+@property(nonatomic, copy) NSString *restaurantID;
 @property(nonatomic, copy) NSString *name;
-@property(nonatomic, strong) NSArray *categories;
-@property(nonatomic, strong) SMLocation *location;
+//@property(nonatomic, strong) NSArray *categories;
+//@property(nonatomic, strong) SMLocation *location;
+@property(nonatomic, copy) NSString *location;
 @property(nonatomic, assign) BOOL hasMenu;
 @property(nonatomic, strong) Menu *menu;
 @property(nonatomic, copy) NSString *canonicalUrl;

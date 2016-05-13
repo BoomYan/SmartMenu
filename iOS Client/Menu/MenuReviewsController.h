@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class SMAnnotation;
+@class Menu;
 
-@interface MenuReviewsController : UIViewController
+@interface MenuReviewsController : UITableViewController
 
-@property(nonatomic, strong) SMAnnotation *annotation;
+@property(nonatomic, strong) Menu *menu;
 
 @end

@@ -14,6 +14,9 @@
 
 @property(nonatomic, strong) Menu *menu;
 
+@property (weak, nonatomic) IBOutlet UIButton *recommendButton;
+@property (weak, nonatomic) IBOutlet UILabel *recomendLabel;
+
 +(MenuCell *)cellWithTableView:(UITableView *)tableView;
 
 @end

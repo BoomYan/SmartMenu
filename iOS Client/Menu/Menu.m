@@ -7,7 +7,21 @@
 //
 
 #import "Menu.h"
+#import "MJExtension.h"
 
 @implementation Menu
+
+MJCodingImplementation
+
+//-(NSComparisonResult)compareMenu:(Menu *)menu
+//{
+//    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+//    f.numberStyle = NSNumberFormatterDecimalStyle;
+//    NSComparisonResult result = [[f numberFromString:self.price] compare:[f numberFromString:menu.price]];
+//    if (result == NSOrderedSame) {
+//        result = [self.name compare:menu.name];
+//    }
+//    return result;
+//}
 
 @end

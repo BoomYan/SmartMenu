@@ -12,8 +12,20 @@
 
 @interface RegisterController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *pwdTextField;
-- (IBAction)register:(UIButton *)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *plaza;
+@property (weak, nonatomic) IBOutlet UIButton *vegetable;
+
+@property (weak, nonatomic) IBOutlet UIButton *meat;
+
+- (IBAction)checkPlaza:(UIButton *)sender;
+
+- (IBAction)checkVege:(UIButton *)sender;
+
+- (IBAction)checkMeat:(UIButton *)sender;
+
+- (IBAction)submit:(UIButton *)sender;
+
 
 @end
 
@@ -22,28 +34,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.plaza setImage:[UIImage imageNamed:@"bg_dealcell"] forState:UIControlStateNormal];
+    [self.plaza setImage:[UIImage imageNamed:@"ic_choosed"] forState:UIControlStateSelected];
+    [self.vegetable setImage:[UIImage imageNamed:@"bg_dealcell"] forState:UIControlStateNormal];
+    [self.vegetable setImage:[UIImage imageNamed:@"ic_choosed"] forState:UIControlStateSelected];
+    [self.meat setImage:[UIImage imageNamed:@"bg_dealcell"] forState:UIControlStateNormal];
+    [self.meat setImage:[UIImage imageNamed:@"ic_choosed"] forState:UIControlStateSelected];
 }
 
 
-- (IBAction)register:(UIButton *)sender {
+
+
+- (IBAction)checkPlaza:(UIButton *)sender {
     
-    NSString *username = self.usernameTextField.text;
-    NSString *pwd = self.pwdTextField.text;
-    NSLog(@"%lu", username.hash);
-    NSLog(@"%@", pwd);
+    self.plaza.selected = !self.plaza.selected;
+}
+
+- (IBAction)checkVege:(UIButton *)sender {
+    self.vegetable.selected = !self.vegetable.selected;
+}
+
+
+- (IBAction)checkMeat:(UIButton *)sender {
+    self.meat.selected = !self.meat.selected;
+}
+
+-(IBAction)submit:(UIButton *)sender {
     
-    AFHTTPSessionManager *mgr = [[AFHTTPSessionManager alloc] init];
-    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"user"] = @(username.hash);
-    NSString *url = @"";
     
-    [mgr GET:url parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", error);
-    }];
-    
+     NSString *username = self.usernameTextField.text;
     [self performSegueWithIdentifier:@"map" sender:nil];
- }
+}
 @end

@@ -94,25 +94,29 @@
     AFHTTPSessionManager *mgr = [[AFHTTPSessionManager alloc] init];
     mgr.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    NSString *url = @"https://api.foursquare.com/v2/venues/search?client_id=BJPNULORLI2RZ1LPYRXSUA5JAQQGLY1PWIYRV0AL1QVDHNSV&client_secret=DI2GIHPLKE0NHH2ARROY0EYB4NZJ3KX1G020T3UN2ESUMWJJ";
+//    NSString *url = @"https://api.foursquare.com/v2/venues/search?client_id=BJPNULORLI2RZ1LPYRXSUA5JAQQGLY1PWIYRV0AL1QVDHNSV&client_secret=DI2GIHPLKE0NHH2ARROY0EYB4NZJ3KX1G020T3UN2ESUMWJJ";
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    params[@"ll"] = [NSString stringWithFormat:@"%f,%f", mapView.region.center.latitude, mapView.region.center.longitude];
+//    params[@"radius"] = @(10000);
+//    //    params[@"categoryId"] = [NSString stringWithFormat:@"%@", @"4d4b7105d754a06374d81259"];
+//    params[@"query"] = @"restaurant";
+//    params[@"v"] = @"20140806";
+//    params[@"m"] = @"foursquare";
+    NSString *url = @"http://smartmenu-backend.us-east-1.elasticbeanstalk.com/getNearRestaurants";
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"ll"] = [NSString stringWithFormat:@"%f,%f", mapView.region.center.latitude, mapView.region.center.longitude];
-    params[@"radius"] = @(10000);
-    //    params[@"categoryId"] = [NSString stringWithFormat:@"%@", @"4d4b7105d754a06374d81259"];
-    params[@"query"] = @"restaurant";
-    params[@"v"] = @"20140806";
-    params[@"m"] = @"foursquare";
+    params[@"location"] = [NSString stringWithFormat:@"%f,%f",mapView.region.center.latitude, mapView.region.center.longitude];
     
     [mgr GET:url parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%", responseObject[@"response"][@"venues"]);
-        self.venues = [Venue objectArrayWithKeyValuesArray:responseObject[@"response"][@"venues"]];
+//        NSLog(@"%", responseObject[@"response"][@"venues"]);
+//        NSLog(@"%@", responseObject);
+        self.venues = [Venue objectArrayWithKeyValuesArray:responseObject[@"restaurants"]];
         
         for (Venue *venue in self.venues) {
             SMAnnotation *annotation = [[SMAnnotation alloc] init];
             annotation.venue = venue;
-            annotation.coordinate = CLLocationCoordinate2DMake(venue.location.lat, venue.location.lng);
+            NSArray *loc = [venue.location componentsSeparatedByString:@","];
+            annotation.coordinate = CLLocationCoordinate2DMake([loc[0] floatValue], [loc[1] floatValue]);
             annotation.title = venue.name;
-            annotation.subtitle = venue.location.address;
             
             if ([self.mapView.annotations containsObject:annotation]) {
                 break;
@@ -156,7 +160,6 @@
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    NSLog(@"right button clicked");
     
     
     [self performSegueWithIdentifier:@"menu" sender:(SMAnnotation *)view.annotation];

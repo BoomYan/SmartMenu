@@ -17,6 +17,10 @@
 
 @property(nonatomic, copy) NSString *price;
 @property(nonatomic, copy) NSString *name;
+@property(nonatomic, assign) int dishID;
+@property(nonatomic, assign) int recommendation;
+@property(nonatomic, assign) int popularity;
 
+//-(NSComparisonResult)compareMenu:(Menu *)menu;
 
 @end
