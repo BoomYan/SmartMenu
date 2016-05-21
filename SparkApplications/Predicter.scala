@@ -6,8 +6,8 @@ object Predicter {
 
 	  	//set aws conf
 		sc.hadoopConfiguration.set("fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")  
-		sc.hadoopConfiguration.set("fs.s3a.access.key", "AKIAJEGWABLP254VT75Q")
-		sc.hadoopConfiguration.set("fs.s3a.secret.key", "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")
+		sc.hadoopConfiguration.set("fs.s3a.access.key", "")
+		sc.hadoopConfiguration.set("fs.s3a.secret.key", "")
 
 		/*
 		* Predict Score Phase
